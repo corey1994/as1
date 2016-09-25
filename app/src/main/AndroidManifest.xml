@@ -11,7 +11,7 @@
         <activity android:name=".AddHabitActivity" />
         <activity
             android:name=".HabitTrackerMainActivity"
-            android:label="@string/title_activity_habit_tracker_main"
+            android:label="hunt1-HabitTracker"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
