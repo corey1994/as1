@@ -3,7 +3,6 @@ package com.example.hunt1_habittracker;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -15,7 +14,6 @@ import java.util.Date;
 public class Habit {
 
     private Date date;
-    private Calendar calendar;
     private String name;
     private ArrayList<String> daysToComplete;
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
