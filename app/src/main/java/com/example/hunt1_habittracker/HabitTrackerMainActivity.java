@@ -7,8 +7,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class HabitTrackerMainActivity extends AppCompatActivity {
+    private ArrayAdapter<Habit> habitAdapter;
+    private ListView habitListView;
+    private List<Habit> listOfHabits;
+    TrackerController tc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +28,12 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        tc = new TrackerController();
+        listOfHabits = new ArrayList<Habit>();
+        habitListView = (ListView) findViewById(R.id.habit_ListView);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.bringToFront();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -25,6 +41,32 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        habitAdapter = new ArrayAdapter<Habit>(this, R.layout.habit_list_item, listOfHabits);
+        habitListView.setAdapter(habitAdapter);
+
+        Listener habitListViewListener = new Listener() {
+            @Override
+            public void update() {
+                listOfHabits.clear();
+                listOfHabits.addAll(tc.getHabitList().getHabits());
+                habitAdapter.notifyDataSetChanged();
+            }
+        };
+
+        tc.getHabitList().addListener(habitListViewListener);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+        Habit a = new Habit("January 1, 2001", "Clean", asList("Monday", "Tuesday"));
+        HabitList habitList = tc.getHabitList();
+        habitList.addHabit(a);
+        habitList.notifyListeners();
     }
 
 }
