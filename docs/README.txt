@@ -7,3 +7,5 @@ Information about SimpleDateFormatter taken from Niroshan Abayakoon on http://st
 One-line arraylist initialization from Christoffer Hammarström http://stackoverflow.com/questions/1005073/initialization-of-an-arraylist-in-one-line
 
 Substring usage from http://www.w3schools.com/jsref/jsref_substring.asp
+
+Using an iterator to remove an item from list (by name) Andreas_D http://stackoverflow.com/questions/14231688/how-to-remove-element-from-arraylist-by-checking-its-value

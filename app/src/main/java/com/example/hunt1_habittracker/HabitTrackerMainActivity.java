@@ -6,6 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -31,6 +33,7 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
         tc = new TrackerController();
         listOfHabits = new ArrayList<Habit>();
         habitListView = (ListView) findViewById(R.id.habit_ListView);
+        registerForContextMenu(habitListView);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         //Prevent the fab from hiding behind the ListView
@@ -70,4 +73,14 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
         tc.getHabitList().notifyListeners();
     }
 
+
+    //Code is directly from https://developer.android.com/guide/topics/ui/menus.html#FloatingContextMenu
+    //Besides of course using my own menu resource id
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.habit_context_menu, menu);
+    }
 }

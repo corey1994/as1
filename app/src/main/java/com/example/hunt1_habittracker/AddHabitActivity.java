@@ -2,6 +2,8 @@ package com.example.hunt1_habittracker;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -48,6 +50,8 @@ public class AddHabitActivity extends Activity {
         });
     }
 
+
+
     private void buildNewHabit() {
         //TODO: deal with exceptions
         String name = newHabitName.getText().toString();
@@ -62,4 +66,5 @@ public class AddHabitActivity extends Activity {
 
         tc.newHabit(date, name, daysToComplete);
     }
+
 }

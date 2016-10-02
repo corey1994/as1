@@ -18,6 +18,24 @@ public class HabitList {
 
     public void addHabit(Habit habit) {
         habits.add(habit);
+        notifyListeners();
+    }
+
+    //Iterator code concept by Andreas_D
+    //http://stackoverflow.com/questions/14231688/how-to-remove-element-from-arraylist-by-checking-its-value
+    public void removeHabitByName(String name) {
+        List<Habit> deleteCandidates = new ArrayList<>();
+
+        // Pass 1 - collect delete candidates
+        for (Habit habit : habits) {
+            if (habit.getName() == name) {
+                deleteCandidates.add(habit);
+            }
+        }
+
+        habits.removeAll(deleteCandidates);
+
+        notifyListeners();
     }
 
     public int getCount() {
