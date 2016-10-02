@@ -49,6 +49,7 @@ public class AddHabitActivity extends Activity {
     }
 
     private void buildNewHabit() {
+        //TODO: deal with exceptions
         String name = newHabitName.getText().toString();
         String date = newHabitDate.getText().toString();
 

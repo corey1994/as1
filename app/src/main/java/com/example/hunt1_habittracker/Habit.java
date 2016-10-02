@@ -28,6 +28,7 @@ public class Habit {
     }
 
     public Habit(String dateString, String name, List<String> daysToComplete) {
+        //TODO: throw exceptions on improper/empty input in any field.
         try {
             this.date = dateFormat.parse(dateString);
         }
@@ -52,7 +53,16 @@ public class Habit {
 
     @Override
     public String toString() {
-        //TODO: Decide final date format here
-        return this.name;
+        //substring idea from http://www.w3schools.com/jsref/jsref_substring.asp
+        String daysString = "(";
+        for (int i = 0; i < this.daysToComplete.size(); i++) {
+            if (i < this.daysToComplete.size() - 1) {
+                daysString += this.daysToComplete.get(i).substring(0,3) + ", ";
+            }
+            else {
+                daysString += this.daysToComplete.get(i).substring(0,3) + ")";
+            }
+        }
+        return this.name+"\n"+daysString;
     }
 }
