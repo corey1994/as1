@@ -52,6 +52,7 @@ public class Habit {
 
     @Override
     public String toString() {
+        //TODO: Decide final date format here
         return this.name;
     }
 }

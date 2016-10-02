@@ -33,6 +33,7 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
         habitListView = (ListView) findViewById(R.id.habit_ListView);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //Prevent the fab from hiding behind the ListView
         fab.bringToFront();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +46,8 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
         habitAdapter = new ArrayAdapter<Habit>(this, R.layout.habit_list_item, listOfHabits);
         habitListView.setAdapter(habitAdapter);
 
+        //Create an object of an abstract class, using the listener interface
+        //From studentPicker videos
         Listener habitListViewListener = new Listener() {
             @Override
             public void update() {
@@ -58,15 +61,13 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
 
-
-        Habit a = new Habit("January 1, 2001", "Clean", asList("Monday", "Tuesday"));
-        HabitList habitList = tc.getHabitList();
-        habitList.addHabit(a);
-        habitList.notifyListeners();
+        //I recognize there is probably a better way to do this,
+        //but for now we just have one or two listeners, so the performance
+        //won't be that bad.
+        tc.getHabitList().notifyListeners();
     }
 
 }

@@ -1,5 +1,7 @@
 package com.example.hunt1_habittracker;
 
+import java.util.List;
+
 /**
  * Created by Corey on 2016-10-01.
  */
@@ -8,19 +10,24 @@ package com.example.hunt1_habittracker;
 // This is the main controller class.
 public class TrackerController {
     //Lazy singleton, as from the StudentPicker video.
-    private HabitList habitList;
+    private static HabitList habitList;
 
     public TrackerController() {
-        habitList = null;
+        if (habitList == null) {
+            habitList = new HabitList();
+        }
     }
 
     public HabitList getHabitList() {
-        if(habitList != null) {
             return habitList;
-        }
-        else {
-            habitList = new HabitList();
-            return habitList;
-        }
+    }
+
+    public void newHabit(String date, String name, List<String> daysToComplete) {
+        Habit newHabit = new Habit(date, name, daysToComplete);
+        habitList.addHabit(newHabit);
+    }
+
+    public void saveToFile() {
+        //TODO: implement this to make app persistent.
     }
 }
