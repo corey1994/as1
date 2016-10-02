@@ -23,6 +23,7 @@ public class HabitList {
 
     //Iterator code concept by Andreas_D
     //http://stackoverflow.com/questions/14231688/how-to-remove-element-from-arraylist-by-checking-its-value
+    //NOTE: If two habits have the same name they will both be deleted.  Potential bug
     public void removeHabitByName(String name) {
         List<Habit> deleteCandidates = new ArrayList<>();
 

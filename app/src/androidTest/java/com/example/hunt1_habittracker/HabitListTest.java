@@ -44,5 +44,14 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
         assertTrue(this.updated);
     }
 
+    public void testRemoveHabitByName() {
+        HabitList list = new HabitList();
+        list.addHabit(habit);
+        assertTrue(list.getHabits().size() == 1);
+
+        list.removeHabitByName("Clean room");
+        assertTrue(list.getHabits().size() == 0);
+    }
+
 
 }

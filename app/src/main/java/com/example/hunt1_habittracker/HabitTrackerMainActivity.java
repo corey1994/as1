@@ -64,16 +64,6 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
 
     }
 
-    protected void onResume() {
-        super.onResume();
-
-        //I recognize there is probably a better way to do this,
-        //but for now we just have one or two listeners, so the performance
-        //won't be that bad.
-        tc.getHabitList().notifyListeners();
-    }
-
-
     //Code is directly from https://developer.android.com/guide/topics/ui/menus.html#FloatingContextMenu
     //Besides of course using my own menu resource id
     @Override
