@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -72,5 +74,21 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.habit_context_menu, menu);
+    }
+
+    //Again, code structure taken directly from android docs
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            //TODO: add action for this item
+            case R.id.menu_item_show_completions:
+                return false;
+            case R.id.menu_item_delete_habit:
+                tc.removeHabitByIndex(info.position);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

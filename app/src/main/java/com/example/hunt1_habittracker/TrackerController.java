@@ -27,6 +27,10 @@ public class TrackerController {
         habitList.addHabit(newHabit);
     }
 
+    public void removeHabitByIndex(int index) {
+        habitList.removeHabitByIndex(index);
+    }
+
     public void saveToFile() {
         //TODO: implement this to make app persistent.
     }
