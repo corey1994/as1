@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AddHabitActivity extends Activity {
@@ -17,6 +19,7 @@ public class AddHabitActivity extends Activity {
     TextView newHabitName;
     TextView newHabitDate;
     List<CheckBox> checkBoxList;
+    protected static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,8 @@ public class AddHabitActivity extends Activity {
 
         newHabitName = (TextView) findViewById(R.id.newHabitNameEditText);
         newHabitDate = (TextView) findViewById(R.id.newHabitDateEditText);
+
+        newHabitDate.setText(dateFormat.format(new Date()));
 
         //This is going to be a list of our checkboxes, so we can loop through them later.
         checkBoxList = new ArrayList<CheckBox>();

@@ -60,7 +60,6 @@ public class TrackerController {
     }
 
     public void loadFromFile() {
-        //TODO: make this work!
         try {
             FileInputStream fis = applicationContext.openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
