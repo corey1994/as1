@@ -21,7 +21,9 @@ public class DisplayCompletionsActivity extends AppCompatActivity {
     private ArrayAdapter<Habit> completionAdapter;
     private List<Habit> completionList;
     private String completionName;
-    TrackerController tc;
+    private String completionCountString;
+    private Listener completionListViewListener;
+    private TrackerController tc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class DisplayCompletionsActivity extends AppCompatActivity {
         completionList = tc.getHabitCompletionList().getListByName(completionName);
 
 
-        String completionCountString = completionList.size()+" completions for "+completionName;
+        completionCountString = completionList.size()+" completions for "+completionName;
         completionCountTextView.setText(completionCountString);
 
         completionAdapter = new ArrayAdapter<Habit>(this, R.layout.habit_list_item, completionList);
@@ -48,13 +50,16 @@ public class DisplayCompletionsActivity extends AppCompatActivity {
 
         //Create an object of an abstract class, using the listener interface
         //From studentPicker videos
-        Listener completionListViewListener = new Listener() {
+        completionListViewListener = new Listener() {
             @Override
             public void update() {
-                String completionCountString = completionList.size()+" completions for "+completionName;
+                completionCountString = completionList.size()+" completions for "+completionName;
                 completionCountTextView.setText(completionCountString);
-                completionList.clear();
-                completionList.addAll(tc.getHabitCompletionList().getListByName(completionName));
+
+                //Apparently completionList is a reference to my private array?  Not sure why/how
+                //completionList.clear();
+                //completionList.addAll(tc.getHabitCompletionList().getListByName(completionName));
+
                 completionAdapter.notifyDataSetChanged();
             }
         };
@@ -82,5 +87,24 @@ public class DisplayCompletionsActivity extends AppCompatActivity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    //@Override
+    //protected void onResume() {
+    //    super.onResume();
+    //
+    //   completionListViewListener.update();
+    //}
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tc.getHabitCompletionList().removeListener(completionListViewListener);
     }
 }
