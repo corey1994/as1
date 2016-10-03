@@ -21,20 +21,20 @@ public class HabitList {
         listeners = new ArrayList<Listener>();
     }
 
-    public void addHabit(Habit habit) {
+    public void add(Habit habit) {
         habits.add(habit);
         notifyListeners();
     }
 
-    public void removeHabitByIndex(int index) {
+    public void removeByIndex(int index) {
         habits.remove(index);
         notifyListeners();
     }
 
     //Iterator code concept by Andreas_D
     //http://stackoverflow.com/questions/14231688/how-to-remove-element-from-arraylist-by-checking-its-value
-    //NOTE: If two habits have the same name they will both be deleted.  Use other removeHabitByIndex instead
-    public void removeHabitByName(String name) {
+    //NOTE: If two habits have the same name they will both be deleted.  Use other removeByIndex instead
+    public void removeByName(String name) {
         List<Habit> deleteCandidates = new ArrayList<>();
 
         // Pass 1 - collect delete candidates
@@ -54,12 +54,12 @@ public class HabitList {
     }
 
     //TODO: sort habits by date
-    public List<Habit> getHabits() {
+    public List<Habit> getList() {
         return habits;
     }
 
     //TODO: filter habits by day
-    public List<Habit> getHabitsByDay() {
+    public List<Habit> getListByDay() {
         return habits;
     }
 

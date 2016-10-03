@@ -17,7 +17,7 @@ public class TrackerControllerTest extends ActivityInstrumentationTestCase2 {
         HabitList habitList = tc.getHabitList();
         assertTrue(habitList != null);
 
-        assertTrue(habitList.getHabits().size() == 0);
+        assertTrue(habitList.getList().size() == 0);
 
 
     }

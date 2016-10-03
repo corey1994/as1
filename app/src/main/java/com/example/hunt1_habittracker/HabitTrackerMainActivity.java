@@ -3,7 +3,6 @@ package com.example.hunt1_habittracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
@@ -16,8 +15,6 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Arrays.asList;
 
 public class HabitTrackerMainActivity extends AppCompatActivity {
     private ArrayAdapter<Habit> habitAdapter;
@@ -58,7 +55,7 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
             @Override
             public void update() {
                 listOfHabits.clear();
-                listOfHabits.addAll(tc.getHabitList().getHabits());
+                listOfHabits.addAll(tc.getHabitList().getList());
                 habitAdapter.notifyDataSetChanged();
             }
         };

@@ -19,15 +19,15 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
         habit = new Habit(new Date(), "Clean room", asList("Mon", "Tue", "Wed"));
     }
 
-    // Tests addHabit, but also getCount
+    // Tests add, but also getCount
     public void testAddHabit() {
         HabitList list = new HabitList();
         int count = list.getCount();
         assertEquals(0, count);
-        list.addHabit(habit);
+        list.add(habit);
         count = list.getCount();
         assertEquals(1, count);
-        assertEquals(list.getHabits().get(0), habit);
+        assertEquals(list.getList().get(0), habit);
     }
 
     boolean updated = false;
@@ -46,20 +46,20 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
 
     public void testRemoveHabitByName() {
         HabitList list = new HabitList();
-        list.addHabit(habit);
-        assertTrue(list.getHabits().size() == 1);
+        list.add(habit);
+        assertTrue(list.getList().size() == 1);
 
-        list.removeHabitByName("Clean room");
-        assertTrue(list.getHabits().size() == 0);
+        list.removeByName("Clean room");
+        assertTrue(list.getList().size() == 0);
     }
 
     public void testRemoveHabitByIndex() {
         HabitList list = new HabitList();
-        list.addHabit(habit);
-        assertTrue(list.getHabits().size() == 1);
+        list.add(habit);
+        assertTrue(list.getList().size() == 1);
 
-        list.removeHabitByIndex(0);
-        assertTrue(list.getHabits().size() == 0);
+        list.removeByIndex(0);
+        assertTrue(list.getList().size() == 0);
     }
 
 

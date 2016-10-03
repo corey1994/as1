@@ -15,11 +15,15 @@ import java.util.List;
 public class Habit {
     //TODO throw exception on missing name or empty daysToComplete
 
-    private Date date;
-    private String name;
+    protected Date date;
+    protected String name;
     private List<String> daysToComplete;
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+    protected static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
 
+    public Habit(Date date, String name) {
+        this.date = date;
+        this.name = name;
+    }
 
     public Habit(Date date, String name, List<String> daysToComplete) {
         this.date = date;

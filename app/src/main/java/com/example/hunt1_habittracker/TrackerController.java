@@ -50,12 +50,12 @@ public class TrackerController {
 
     public void newHabit(String date, String name, List<String> daysToComplete) {
         Habit newHabit = new Habit(date, name, daysToComplete);
-        habitList.addHabit(newHabit);
+        habitList.add(newHabit);
         saveInFile();
     }
 
     public void removeHabitByIndex(int index) {
-        habitList.removeHabitByIndex(index);
+        habitList.removeByIndex(index);
         saveInFile();
     }
 
@@ -92,7 +92,7 @@ public class TrackerController {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
 
             Gson gson = new Gson();
-            gson.toJson(habitList.getHabits(), out);
+            gson.toJson(habitList.getList(), out);
             out.flush();
 
             fos.close();
