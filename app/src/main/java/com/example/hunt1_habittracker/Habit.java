@@ -25,6 +25,16 @@ public class Habit {
         this.name = name;
     }
 
+    public Habit(String dateString, String name) {
+        try {
+            this.date = dateFormat.parse(dateString);
+        }
+        catch (ParseException e) {
+            this.date = new Date();
+        }
+        this.name = name;
+    }
+
     public Habit(Date date, String name, List<String> daysToComplete) {
         this.date = date;
         this.name = name;

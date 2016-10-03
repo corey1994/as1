@@ -19,6 +19,10 @@ public class HabitCompletion extends Habit {
         super(date, name);
     }
 
+    public HabitCompletion(String dateString, String name) {
+        super(dateString, name);
+    }
+
     @Override
     public String toString() {
         return this.name+"\n"+getDateString();

@@ -9,16 +9,16 @@ import java.util.List;
 
 public class HabitList {
     protected List<Habit> habits;
-    protected ArrayList<Listener> listeners;
+    protected List<Listener> listeners;
 
     public HabitList() {
         habits = new ArrayList<Habit>();
-        listeners = new ArrayList<Listener>();
+        listeners = new ArrayList<>();
     }
 
     public HabitList(List<Habit> habits) {
         this.habits = habits;
-        listeners = new ArrayList<Listener>();
+        listeners = new ArrayList<>();
     }
 
     public void add(Habit habit) {

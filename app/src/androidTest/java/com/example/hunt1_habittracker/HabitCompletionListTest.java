@@ -15,14 +15,30 @@ public class HabitCompletionListTest extends ActivityInstrumentationTestCase2 {
         super(HabitTrackerMainActivity.class);
     }
 
-    public void testGetList() {
-        HabitCompletion a = new HabitCompletion(new Date(), "clean room");
-        HabitCompletionList al = new HabitCompletionList(a.getName());
-        al.add(a);
-        List<Habit> list = al.getList();
+    public void testGetCountByName() {
+        String name = "Clean dishes";
+        HabitCompletionList list = new HabitCompletionList();
+        assertEquals(0, list.getCountByName(name));
 
-        String toString = list.get(0).toString();
-        String expected = "clean room\n"+a.getDateString();
-        assertEquals(expected, toString);
+        HabitCompletion a = new HabitCompletion(new Date(), name);
+        list.add(a);
+        assertEquals(1, list.getCountByName(name));
+
+        HabitCompletion b = new HabitCompletion("January 1, 2016", name);
+        list.add(a);
+        assertEquals(2, list.getCountByName(name));
+    }
+
+    public void testGetListByName() {
+        String name = "Clean dishes";
+        HabitCompletionList completionList = new HabitCompletionList();
+        HabitCompletion a = new HabitCompletion(new Date(), name);
+        completionList.add(a);
+        HabitCompletion b = new HabitCompletion("January 1, 2016", name);
+        completionList.add(b);
+
+        List<Habit> list = completionList.getListByName(name);
+        assertTrue(list.contains(a));
+        assertTrue(list.contains(b));
     }
 }
