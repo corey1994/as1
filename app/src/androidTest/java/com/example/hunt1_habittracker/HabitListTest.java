@@ -42,6 +42,11 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
         list.addListener(l);
         list.notifyListeners();
         assertTrue(this.updated);
+
+        list.removeListener(l);
+        this.updated = false;
+        list.notifyListeners();
+        assertFalse(this.updated);
     }
 
     public void testRemoveHabitByName() {

@@ -17,7 +17,7 @@ public class HabitCompletionListTest extends ActivityInstrumentationTestCase2 {
 
     public void testGetList() {
         HabitCompletion a = new HabitCompletion(new Date(), "clean room");
-        HabitCompletionList al = new HabitCompletionList();
+        HabitCompletionList al = new HabitCompletionList(a.getName());
         al.add(a);
         List<Habit> list = al.getList();
 

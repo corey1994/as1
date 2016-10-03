@@ -8,8 +8,8 @@ import java.util.List;
  */
 
 public class HabitList {
-    private List<Habit> habits;
-    private ArrayList<Listener> listeners;
+    protected List<Habit> habits;
+    protected ArrayList<Listener> listeners;
 
     public HabitList() {
         habits = new ArrayList<Habit>();
@@ -74,6 +74,6 @@ public class HabitList {
     }
 
     public void removeListener(Listener l) {
-        //TODO: implement removeListener
+        this.listeners.remove(l);
     }
 }
