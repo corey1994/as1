@@ -39,10 +39,11 @@ public class DisplayCompletionsActivity extends AppCompatActivity {
         completionName = intent.getStringExtra(HabitTrackerMainActivity.EXTRA_COMPLETION_NAME);
 
         tc = new TrackerController();
+        //TODO investigate why this seems to have a reference to the private list
         completionList = tc.getHabitCompletionList().getListByName(completionName);
 
 
-        completionCountString = completionList.size()+" completions for "+completionName;
+        completionCountString = completionList.size()+" completion(s) for "+completionName;
         completionCountTextView.setText(completionCountString);
 
         completionAdapter = new ArrayAdapter<Habit>(this, R.layout.habit_list_item, completionList);
@@ -53,13 +54,8 @@ public class DisplayCompletionsActivity extends AppCompatActivity {
         completionListViewListener = new Listener() {
             @Override
             public void update() {
-                completionCountString = completionList.size()+" completions for "+completionName;
+                completionCountString = completionList.size()+" completion(s) for "+completionName;
                 completionCountTextView.setText(completionCountString);
-
-                //Apparently completionList is a reference to my private array?  Not sure why/how
-                //completionList.clear();
-                //completionList.addAll(tc.getHabitCompletionList().getListByName(completionName));
-
                 completionAdapter.notifyDataSetChanged();
             }
         };
