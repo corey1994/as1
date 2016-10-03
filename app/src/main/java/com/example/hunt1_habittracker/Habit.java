@@ -69,15 +69,19 @@ public class Habit {
     @Override
     public String toString() {
         //substring idea from http://www.w3schools.com/jsref/jsref_substring.asp
-        String daysString = "(";
-        for (int i = 0; i < this.daysToComplete.size(); i++) {
-            if (i < this.daysToComplete.size() - 1) {
-                daysString += this.daysToComplete.get(i).substring(0,3) + ", ";
+        if (daysToComplete != null) {
+            String daysString = "(";
+            for (int i = 0; i < this.daysToComplete.size(); i++) {
+                if (i < this.daysToComplete.size() - 1) {
+                    daysString += this.daysToComplete.get(i).substring(0, 3) + ", ";
+                } else {
+                    daysString += this.daysToComplete.get(i).substring(0, 3) + ")";
+                }
             }
-            else {
-                daysString += this.daysToComplete.get(i).substring(0,3) + ")";
-            }
+            return this.name + "\n" + daysString + "\n" + getDateString();
         }
-        return this.name+"\n"+daysString+"\n"+getDateString();
+        else {
+            return this.name + "\n" + getDateString();
+        }
     }
 }

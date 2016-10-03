@@ -17,6 +17,7 @@ public class HabitCompletionList {
         listeners = new ArrayList<Listener>();
     }
 
+
     public void add(HabitCompletion a) {
         String name = a.getName();
         if (table.containsKey(name)) {
