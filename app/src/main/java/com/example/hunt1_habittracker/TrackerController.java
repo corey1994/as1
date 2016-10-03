@@ -75,10 +75,12 @@ public class TrackerController {
     public void newHabitCompletion(Date date, String name) {
         HabitCompletion completion = new HabitCompletion(date, name);
         habitCompletionList.add(completion);
+        saveInFile();
     }
 
     public void removeCompletion(String name, int index) {
         habitCompletionList.remove(name, index);
+        saveInFile();
     }
 
     public void loadFromFile() {
