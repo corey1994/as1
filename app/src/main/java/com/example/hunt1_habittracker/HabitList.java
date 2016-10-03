@@ -16,6 +16,11 @@ public class HabitList {
         listeners = new ArrayList<Listener>();
     }
 
+    public HabitList(List<Habit> habits) {
+        this.habits = habits;
+        listeners = new ArrayList<Listener>();
+    }
+
     public void addHabit(Habit habit) {
         habits.add(habit);
         notifyListeners();

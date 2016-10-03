@@ -32,7 +32,8 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tc = new TrackerController();
+        tc = new TrackerController(getApplicationContext());
+        tc.loadFromFile();
         listOfHabits = new ArrayList<Habit>();
         habitListView = (ListView) findViewById(R.id.habit_ListView);
         registerForContextMenu(habitListView);
@@ -63,6 +64,7 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
         };
 
         tc.getHabitList().addListener(habitListViewListener);
+        tc.getHabitList().notifyListeners();  //Refresh the view to show habits loaded from file
 
     }
 

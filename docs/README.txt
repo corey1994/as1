@@ -9,3 +9,5 @@ One-line arraylist initialization from Christoffer Hammarström http://stackoverf
 Substring usage from http://www.w3schools.com/jsref/jsref_substring.asp
 
 Using an iterator to remove an item from list (by name) Andreas_D http://stackoverflow.com/questions/14231688/how-to-remove-element-from-arraylist-by-checking-its-value
+
+From http://stackoverflow.com/questions/5876278/using-openfileoutput-in-a-class-not-an-activity realized that I needed a context for openFileOutput

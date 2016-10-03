@@ -63,6 +63,6 @@ public class Habit {
                 daysString += this.daysToComplete.get(i).substring(0,3) + ")";
             }
         }
-        return this.name+"\n"+daysString;
+        return this.name+"\n"+daysString+"\n"+getDateString();
     }
 }
