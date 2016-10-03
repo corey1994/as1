@@ -49,6 +49,10 @@ public class HabitCompletionList {
         }
     }
 
+    public Hashtable<String, HabitList> getHashtable() {
+        return table;
+    }
+
     public void remove(String name, int i) {
         table.get(name).removeByIndex(i);
         notifyListeners();

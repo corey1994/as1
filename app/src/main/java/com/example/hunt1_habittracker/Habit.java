@@ -23,6 +23,7 @@ public class Habit {
     public Habit(Date date, String name) {
         this.date = date;
         this.name = name;
+        this.daysToComplete = new ArrayList<String>();
     }
 
     public Habit(String dateString, String name) {

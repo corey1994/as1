@@ -25,7 +25,8 @@ import java.util.List;
 
 // This is the main controller class.
 public class TrackerController {
-    private static String FILENAME = "tracker.json";
+    private static String HABITFILENAME = "tracker_habits.json";
+    private static String COMPLETIONFILENAME = "tracker_completions.json";
     //Lazy singleton, as from the StudentPicker video.
     private static HabitList habitList;
     private static HabitCompletionList habitCompletionList;
@@ -82,7 +83,7 @@ public class TrackerController {
 
     public void loadFromFile() {
         try {
-            FileInputStream fis = applicationContext.openFileInput(FILENAME);
+            FileInputStream fis = applicationContext.openFileInput(HABITFILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 
             Gson gson = new Gson();
@@ -93,6 +94,12 @@ public class TrackerController {
 
             List<Habit> habits = gson.fromJson(in, listType);
             this.habitList = new HabitList(habits);
+
+
+            //Load habit completions
+            fis = applicationContext.openFileInput(COMPLETIONFILENAME);
+            in = new BufferedReader(new InputStreamReader(fis));
+            habitCompletionList = gson.fromJson(in, HabitCompletionList.class);
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
@@ -107,12 +114,21 @@ public class TrackerController {
 
     public void saveInFile() {
         try {
-            FileOutputStream fos = applicationContext.openFileOutput(FILENAME,0);
+            FileOutputStream fos = applicationContext.openFileOutput(HABITFILENAME,0);
 
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
 
             Gson gson = new Gson();
             gson.toJson(habitList.getList(), out);
+            out.flush();
+
+            fos.close();
+
+            fos = applicationContext.openFileOutput(COMPLETIONFILENAME,0);
+
+            out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            gson.toJson(habitCompletionList, out);
             out.flush();
 
             fos.close();
