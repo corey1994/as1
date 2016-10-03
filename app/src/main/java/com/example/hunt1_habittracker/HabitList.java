@@ -58,12 +58,7 @@ public class HabitList {
         return habits;
     }
 
-    //TODO: filter habits by day
-    public List<Habit> getListByDay() {
-        return habits;
-    }
-
-    public void notifyListeners() {
+        public void notifyListeners() {
         for (Listener listener : listeners) {
             listener.update();
         }

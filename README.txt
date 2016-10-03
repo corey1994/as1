@@ -1,3 +1,5 @@
+video: https://youtu.be/Jmy55zAe598
+
 Acknoledgements (I have includes resources I consulted, outside of the official resources here.  I may have missed a couple here, but all consulted sources are attributed in my code) :
 
 LonelyTwitter, FillerCreepForAndroid and StudentPicker were referenced throughout the design of this program, as were the official android and java pages.
