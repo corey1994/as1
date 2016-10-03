@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HabitTrackerMainActivity extends AppCompatActivity {
@@ -21,6 +22,8 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
     private ListView habitListView;
     private List<Habit> listOfHabits;
     TrackerController tc;
+
+    public static final String EXTRA_COMPLETION_NAME = "com.example.hunt1_habittracker.completion_name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +83,15 @@ public class HabitTrackerMainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
-            //TODO: add action for this item
+            case R.id.menu_item_complete_habit:
+                tc.newHabitCompletion(new Date(), tc.getHabitList().getList().get(info.position).getName());
+                return true;
             case R.id.menu_item_show_completions:
-                return false;
+                Intent intent = new Intent(this, DisplayCompletionsActivity.class);
+                String completionName = tc.getHabitList().getList().get(info.position).getName();
+                intent.putExtra(EXTRA_COMPLETION_NAME, completionName);
+                startActivity(intent);
+                return true;
             case R.id.menu_item_delete_habit:
                 tc.removeHabitByIndex(info.position);
                 return true;

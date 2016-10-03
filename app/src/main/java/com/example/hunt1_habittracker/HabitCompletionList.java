@@ -10,9 +10,11 @@ import java.util.List;
 
 public class HabitCompletionList {
     private Hashtable<String, HabitList> table;
+    private List<Listener> listeners;
 
     public HabitCompletionList() {
         table = new Hashtable<String, HabitList>();
+        listeners = new ArrayList<Listener>();
     }
 
     public void add(HabitCompletion a) {
@@ -25,6 +27,7 @@ public class HabitCompletionList {
             newList.add(a);
             table.put(name, newList);
         }
+        notifyListeners();
     }
 
     public int getCountByName(String name) {
@@ -38,10 +41,30 @@ public class HabitCompletionList {
 
 
     public List<Habit> getListByName(String name) {
-        return table.get(name).getList();
+        if (table.containsKey(name)) {
+            return table.get(name).getList();
+        }
+        else {
+            return new ArrayList<Habit>();
+        }
     }
 
     public void remove(String name, int i) {
         table.get(name).removeByIndex(i);
+        notifyListeners();
+    }
+
+    public void notifyListeners() {
+        for (Listener listener : listeners) {
+            listener.update();
+        }
+    }
+
+    public void addListener(Listener l) {
+        this.listeners.add(l);
+    }
+
+    public void removeListener(Listener l) {
+        this.listeners.remove(l);
     }
 }

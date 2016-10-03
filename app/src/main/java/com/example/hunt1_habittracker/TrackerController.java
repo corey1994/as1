@@ -76,7 +76,9 @@ public class TrackerController {
         habitCompletionList.add(completion);
     }
 
-
+    public void removeCompletion(String name, int index) {
+        habitCompletionList.remove(name, index);
+    }
 
     public void loadFromFile() {
         try {

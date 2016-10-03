@@ -2,6 +2,8 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:title="Complete"
+        android:id="@+id/menu_item_complete_habit" />
     <item android:title="Show Completions"
         android:id="@+id/menu_item_show_completions" />
     <item android:title="Delete"
