@@ -41,4 +41,22 @@ public class HabitCompletionListTest extends ActivityInstrumentationTestCase2 {
         assertTrue(list.contains(a));
         assertTrue(list.contains(b));
     }
+
+    public void testRemoveCompletion() {
+        String name = "Clean dishes";
+        HabitCompletionList completionList = new HabitCompletionList();
+        HabitCompletion a = new HabitCompletion(new Date(), name);
+        completionList.add(a);
+        HabitCompletion b = new HabitCompletion("January 1, 2016", name);
+        completionList.add(b);
+
+        List<Habit> list = completionList.getListByName(name);
+        assertTrue(list.contains(a));
+        assertTrue(list.contains(b));
+
+        completionList.remove(name, 0);
+        list = completionList.getListByName(name);
+        assertEquals(b, list.get(0));
+        assertEquals(1, list.size());
+    }
 }

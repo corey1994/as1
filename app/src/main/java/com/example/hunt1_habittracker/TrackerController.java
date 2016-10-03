@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,11 +28,15 @@ public class TrackerController {
     private static String FILENAME = "tracker.json";
     //Lazy singleton, as from the StudentPicker video.
     private static HabitList habitList;
+    private static HabitCompletionList habitCompletionList;
     private static Context applicationContext;
 
     public TrackerController(Context context) {
         if (habitList == null) {
             habitList = new HabitList();
+        }
+        if (habitCompletionList == null) {
+            habitCompletionList = new HabitCompletionList();
         }
         if (applicationContext == null) {
             applicationContext = context;
@@ -42,10 +47,17 @@ public class TrackerController {
         if (habitList == null) {
             habitList = new HabitList();
         }
+        if (habitCompletionList == null) {
+            habitCompletionList = new HabitCompletionList();
+        }
     }
 
     public HabitList getHabitList() {
             return habitList;
+    }
+
+    public HabitCompletionList getHabitCompletionList() {
+        return habitCompletionList;
     }
 
     public void newHabit(String date, String name, List<String> daysToComplete) {
@@ -58,6 +70,13 @@ public class TrackerController {
         habitList.removeByIndex(index);
         saveInFile();
     }
+
+    public void newHabitCompletion(Date date, String name) {
+        HabitCompletion completion = new HabitCompletion(date, name);
+        habitCompletionList.add(completion);
+    }
+
+
 
     public void loadFromFile() {
         try {

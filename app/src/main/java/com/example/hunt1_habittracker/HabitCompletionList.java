@@ -40,4 +40,8 @@ public class HabitCompletionList {
     public List<Habit> getListByName(String name) {
         return table.get(name).getList();
     }
+
+    public void remove(String name, int i) {
+        table.get(name).removeByIndex(i);
+    }
 }
